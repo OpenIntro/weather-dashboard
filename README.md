@@ -5,7 +5,8 @@ A modern, responsive React weather dashboard built with TypeScript, styled-compo
 ## Features
 
 - **Modern UI Design**: Clean, responsive interface with a split-screen layout
-- **Real-time Weather Data**: Current weather conditions, forecasts, and detailed metrics
+- **Real-time Weather Data**: Live weather data from OpenWeatherMap API
+- **Dark Mode Support**: Toggle between light and dark themes
 - **Interactive Components**: 
   - Weather cards with temperature and daily forecasts
   - Sunrise/sunset widget
@@ -14,7 +15,7 @@ A modern, responsive React weather dashboard built with TypeScript, styled-compo
   - Search functionality for location lookup
 - **Responsive Design**: Optimized for desktop, tablet, and mobile devices
 - **TypeScript**: Full type safety throughout the application
-- **Styled Components**: Maintainable CSS-in-JS styling
+- **Styled Components**: Maintainable CSS-in-JS styling with theme support
 - **Heroicons**: Beautiful, consistent iconography
 
 ## Tech Stack
@@ -36,6 +37,7 @@ src/
 │   │   ├── Card.tsx
 │   │   ├── IconButton.tsx
 │   │   ├── SearchBar.tsx
+│   │   ├── ThemeToggle.tsx
 │   │   └── index.ts
 │   ├── features/        # Feature-specific components
 │   │   ├── Header.tsx
@@ -49,10 +51,14 @@ src/
 │       ├── Sidebar.tsx
 │       ├── MainContent.tsx
 │       └── index.ts
+├── contexts/            # React contexts
+│   └── ThemeContext.tsx
 ├── types/               # TypeScript type definitions
-│   └── index.ts
-├── utils/               # Utility functions and mock data
-│   └── mockData.ts
+│   ├── index.ts
+│   └── styled.d.ts
+├── utils/               # Utility functions and API services
+│   ├── mockData.ts
+│   └── weatherApi.ts
 ├── styles/              # Global styles
 │   └── GlobalStyles.ts
 ├── App.tsx              # Main application component
@@ -65,6 +71,7 @@ src/
 
 - Node.js (version 16 or higher)
 - npm or yarn
+- OpenWeatherMap API key (free at https://openweathermap.org/api)
 
 ### Installation
 
@@ -79,12 +86,20 @@ cd weather-dashboard
 npm install
 ```
 
-3. Start the development server:
+3. Set up your API key:
+   - Copy `.env.example` to `.env`
+   - Get a free API key from [OpenWeatherMap](https://openweathermap.org/api)
+   - Add your API key to the `.env` file:
+   ```
+   VITE_OPENWEATHER_API_KEY=your_api_key_here
+   ```
+
+4. Start the development server:
 ```bash
 npm run dev
 ```
 
-4. Open your browser and navigate to `http://localhost:3000`
+5. Open your browser and navigate to `http://localhost:3000`
 
 ### Available Scripts
 
@@ -140,16 +155,31 @@ The application uses TypeScript interfaces for type safety:
 - **LocationData**: Location information
 - **UserData**: User preferences and profile
 
+## API Integration
+
+The dashboard now integrates with the OpenWeatherMap API to provide real-time weather data:
+
+- **Current Weather**: Temperature, conditions, humidity, wind speed, pressure, visibility
+- **5-Day Forecast**: Daily high/low temperatures and conditions
+- **Sunrise/Sunset**: Daily sunrise and sunset times with day length
+- **Rainfall Data**: Precipitation amounts and probabilities
+- **Air Quality**: Air quality index and pollutant levels
+
+### API Setup
+
+1. Sign up for a free API key at [OpenWeatherMap](https://openweathermap.org/api)
+2. Add your API key to the `.env` file
+3. The app will automatically fetch live weather data for any city you search
+
 ## Future Enhancements
 
-- Real weather API integration (OpenWeatherMap, WeatherAPI)
 - User authentication and preferences
 - Weather alerts and notifications
 - Historical weather data
 - Multiple location support
-- Dark mode theme
 - Weather maps integration
 - Unit conversion (Celsius/Fahrenheit, km/h/mph)
+- Weather radar and satellite imagery
 
 ## Contributing
 
