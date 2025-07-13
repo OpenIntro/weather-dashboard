@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Theme } from '@contexts/ThemeContext'
 
 interface CardProps {
   children: React.ReactNode
@@ -10,10 +11,10 @@ interface CardProps {
   cursor?: string
 }
 
-const StyledCard = styled.div<Omit<CardProps, 'children'>>`
-  background: #FFFFFF;
+const StyledCard = styled.div<Omit<CardProps, 'children'> & { theme: Theme }>`
+  background: ${props => props.theme.colors.cardBackground};
   border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: ${props => props.theme.colors.cardShadow};
   padding: ${props => props.padding || '24px'};
   margin: ${props => props.margin || '0'};
   height: ${props => props.height || 'auto'};
@@ -22,9 +23,9 @@ const StyledCard = styled.div<Omit<CardProps, 'children'>>`
   transition: all 0.2s ease-in-out;
   
   &:hover {
-    ${props => props.onClick && `
+    ${(props: any) => props.onClick && `
       transform: translateY(-2px);
-      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0px 6px 12px ${props.theme.colors.shadow};
     `}
   }
 `

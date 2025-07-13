@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { ThemeProvider } from '@contexts/ThemeContext'
+import { GlobalStyles } from '@styles/GlobalStyles'
 import { Sidebar, MainContent, LeftColumnWrapper, RightColumnWrapper } from '@layouts'
 import { Header, WeatherCard, SunsetSunriseWidget, RainfallChart, AirQualityIndexWidget, DetailedWeatherCard } from '@features'
-import { SearchBar, Card } from '@common'
+import { SearchBar, Card, ThemeToggle } from '@common'
 import { 
   mockWeatherData, 
   mockDailyForecast, 
@@ -31,56 +33,65 @@ const App: React.FC = () => {
   }
 
   return (
-    <div style={{ display: 'flex' }}>
-      <Sidebar 
-        activeSection={activeSection} 
-        onSectionChange={setActiveSection} 
-      />
-      
-      <MainContent>
-        <LeftColumnWrapper>
-          <Header user={mockUserData} />
-          
-          <Card>
-            <WeatherCard 
-              weather={mockWeatherData}
-              forecast={mockDailyForecast}
-              location={mockLocationData}
-            />
-          </Card>
-          
-          <Card>
-            <SunsetSunriseWidget data={mockSunriseSunsetData} />
-          </Card>
-          
-          <Card>
-            <RainfallChart data={mockRainfallData} />
-          </Card>
-          
-          <Card>
-            <AirQualityIndexWidget 
-              data={mockAirQualityData}
-              onRefresh={handleRefreshAirQuality}
-              isLoading={isLoadingAirQuality}
-            />
-          </Card>
-        </LeftColumnWrapper>
+    <ThemeProvider>
+      <GlobalStyles />
+      <div style={{ display: 'flex' }}>
+        <Sidebar 
+          activeSection={activeSection} 
+          onSectionChange={setActiveSection} 
+        />
         
-        <RightColumnWrapper>
-          <Card>
-            <SearchBar 
-              value={searchValue}
-              onChange={setSearchValue}
-              onSearch={handleSearch}
-            />
-          </Card>
+        <MainContent>
+          <LeftColumnWrapper>
+            <Header user={mockUserData} />
+            
+            <Card>
+              <WeatherCard 
+                weather={mockWeatherData}
+                forecast={mockDailyForecast}
+                location={mockLocationData}
+              />
+            </Card>
+            
+            <Card>
+              <SunsetSunriseWidget data={mockSunriseSunsetData} />
+            </Card>
+            
+            <Card>
+              <RainfallChart data={mockRainfallData} />
+            </Card>
+            
+            <Card>
+              <AirQualityIndexWidget 
+                data={mockAirQualityData}
+                onRefresh={handleRefreshAirQuality}
+                isLoading={isLoadingAirQuality}
+              />
+            </Card>
+          </LeftColumnWrapper>
           
-          <Card>
-            <DetailedWeatherCard weather={mockWeatherData} />
-          </Card>
-        </RightColumnWrapper>
-      </MainContent>
-    </div>
+          <RightColumnWrapper>
+            <Card>
+              <SearchBar 
+                value={searchValue}
+                onChange={setSearchValue}
+                onSearch={handleSearch}
+              />
+            </Card>
+            
+            <Card>
+              <DetailedWeatherCard weather={mockWeatherData} />
+            </Card>
+            
+            <Card>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
+                <ThemeToggle />
+              </div>
+            </Card>
+          </RightColumnWrapper>
+        </MainContent>
+      </div>
+    </ThemeProvider>
   )
 }
 
