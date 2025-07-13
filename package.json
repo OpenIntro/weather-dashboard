@@ -1,0 +1,36 @@
+{
+  "name": "weather-dashboard",
+  "version": "1.0.0",
+  "description": "A modern React weather dashboard with TypeScript and styled-components",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@heroicons/react": "^2.0.18",
+    "styled-components": "^6.1.1",
+    "recharts": "^2.8.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@types/styled-components": "^5.1.34",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "@vitejs/plugin-react": "^4.1.1",
+    "eslint": "^8.53.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.4",
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0"
+  },
+  "keywords": ["react", "typescript", "weather", "dashboard", "styled-components"],
+  "author": "",
+  "license": "MIT"
+}
